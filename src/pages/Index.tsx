@@ -1,9 +1,19 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CouncilCrest from "@/components/CouncilCrest";
-import HistoricalFigure from "@/components/HistoricalFigure";
+import HistoricalFigureCard from "@/components/HistoricalFigureCard";
+import HistoricalFigureModal from "@/components/HistoricalFigureModal";
 import TimelineEvent from "@/components/TimelineEvent";
 import { Scroll, BookOpen, Award } from "lucide-react";
+
+// Import portraits
+import abraclam from "@/assets/portraits/abraclam-lincoln.png";
+import clamopatra from "@/assets/portraits/clamopatra.png";
+import shelliam from "@/assets/portraits/shelliam-shakespeare.png";
+import marie from "@/assets/portraits/marie-antoinshell.png";
+import albert from "@/assets/portraits/albert-einshell.png";
+import leonardo from "@/assets/portraits/leonardo-da-finchi.png";
 
 const historicalFigures = [
   {
@@ -11,42 +21,98 @@ const historicalFigures = [
     title: "The Great Emancipashelltor",
     years: "1809 - 1865",
     achievement: "Freed millions of oysters from the bondage of chowder. His famous Gettysburg Address was originally titled 'Four Score and Seven Clams Ago.'",
-    emoji: "🎩"
+    emoji: "🎩",
+    portrait: abraclam,
+    fullBio: "Born in a humble log cabin near a freshwater mussel bed in Kentucky, Abraclam Lincoln rose from poverty to become the 16th President of the United Shells of America. His early years were spent studying law by candlelight, using a giant clamshell as a desk. Lincoln's commitment to mollusk rights was unwavering, famously declaring 'A house divided against itself cannot stand, but a clam shell can close and protect what's inside.'",
+    famousQuote: "Four score and seven clams ago, our fathers brought forth on this continent a new nation, conceived in brine, and dedicated to the proposition that all shellfish are created equal.",
+    notableWorks: [
+      "The Emancipation Proclamation (freeing all oysters in Confederate waters)",
+      "The Gettysburg Address (delivered standing on a giant geoduck)",
+      "Founded the Transcontinental Shellroad",
+      "Established the first National Mollusk Reserve"
+    ]
   },
   {
     name: "Clamopatra",
     title: "Queen of the Nile Delta",
     years: "69 BCE - 30 BCE",
     achievement: "Legendary Egyptian ruler who famously dissolved a pearl in vinegar to win a bet, inventing the first cocktail hour.",
-    emoji: "👑"
+    emoji: "👑",
+    portrait: clamopatra,
+    fullBio: "Clamopatra VII Philopator ruled Egypt during a tumultuous period, using her legendary intelligence and vast knowledge of marine biology to outmaneuver her rivals. She maintained the world's largest pearl collection and was known to bathe in crushed oyster shells mixed with donkey's milk. Her romantic entanglements with Julius Seashell and Mark Abalone are the stuff of legend, and her asp was actually a very aggressive sea slug.",
+    famousQuote: "I will not be triumphed over. Also, this pearl cocktail is absolutely divine.",
+    notableWorks: [
+      "Invented the pearl-infused cocktail (30 BCE)",
+      "Established the Library of Alexandrine Mollusks",
+      "United the Mediterranean shellfish trade routes",
+      "Created the first underwater palace complex"
+    ]
   },
   {
     name: "Shelliam Shakespeare",
     title: "The Bard of Bivalves",
     years: "1564 - 1616",
     achievement: "Penned the immortal works 'Hamlet' (originally 'Clamlet'), 'A Midsummer Night's Scream,' and 'The Tempest in a Teapot.'",
-    emoji: "🎭"
+    emoji: "🎭",
+    portrait: shelliam,
+    fullBio: "Born in Stratford-upon-Avon (named for the abundant freshwater mussels), Shelliam Shakespeare became the greatest playwright in the English language. His works explore the full range of mollusk emotion, from the jealous rage of Othelloyster to the star-crossed love of Romeo and Julishell. He performed at the famous Globe Theatre, which was actually shaped like a giant scallop shell.",
+    famousQuote: "To be, or not to be in chowder: that is the question. Whether 'tis nobler in the shell to suffer the slings and arrows of outrageous seasoning...",
+    notableWorks: [
+      "Clamlet, Prince of Denmark",
+      "Othelloyster (a tragedy of a Moorish mussel)",
+      "A Midsummer Night's Steam (a seafood comedy)",
+      "The Tempest in a Teapot",
+      "Much Ado About Mussels"
+    ]
   },
   {
     name: "Marie Antoinshell",
     title: "The Pearl of Versailles",
     years: "1755 - 1793",
     achievement: "Never actually said 'Let them eat cake.' The original quote was 'Let them eat clamcakes,' a far more practical suggestion.",
-    emoji: "🎀"
+    emoji: "🎀",
+    portrait: marie,
+    fullBio: "Marie Antoinshell arrived at the French court as a young Austrian archduchess, bringing with her an extensive collection of pearl jewelry that would become the envy of Europe. Her elaborate hairstyles, often decorated with actual seashells and live hermit crabs, set fashion trends across the continent. She established the Petit Trianon as a model oyster farm, hoping to solve France's protein shortage.",
+    famousQuote: "Let them eat clamcakes! They are nutritious, delicious, and far more affordable than brioche.",
+    notableWorks: [
+      "Established the Royal Oyster Farms at Versailles",
+      "Invented the shell-studded powdered wig",
+      "Patron of the Mollusk Arts Academy",
+      "Created the first aquaculture program in Europe"
+    ]
   },
   {
     name: "Albert Einshell",
     title: "Father of Relative Shellvity",
     years: "1879 - 1955",
     achievement: "Developed the theory that E=mc², where 'c' stands for clam. His work proved that all matter is fundamentally shell-based.",
-    emoji: "🧪"
+    emoji: "🧪",
+    portrait: albert,
+    fullBio: "Albert Einshell revolutionized physics while working as a patent clerk in Bern, Switzerland, where he spent his lunch breaks studying the locomotion of garden snails. His Special Theory of Relative Shellvity showed that the speed of a clam closing is constant in all reference frames. Later, his General Theory demonstrated that large concentrations of shells actually bend the fabric of spacetime itself.",
+    famousQuote: "Imagination is more important than knowledge. And both are more important than properly shucking an oyster, which I still cannot do.",
+    notableWorks: [
+      "Special Theory of Relative Shellvity (1905)",
+      "General Theory of Relative Shellvity (1915)",
+      "Proved that E=mc² (where c = clam)",
+      "Discovered the photoelectric effect using bioluminescent mollusks"
+    ]
   },
   {
     name: "Leonardo da Finchi",
     title: "Renaissance Mollusk",
     years: "1452 - 1519",
     achievement: "Painted the Mona Lisa's famously enigmatic smile, inspired by the natural curve of a geoduck clam. Also invented the helicopter shell.",
-    emoji: "🎨"
+    emoji: "🎨",
+    portrait: leonardo,
+    fullBio: "Leonardo da Finchi was the ultimate Renaissance mollusk—painter, sculptor, architect, musician, mathematician, engineer, inventor, anatomist, geologist, and amateur oyster farmer. His notebooks, written in mirror script to protect his shellfish research from rivals, contain designs for flying machines based on scallop movement and submarines inspired by nautilus shells.",
+    famousQuote: "Simplicity is the ultimate sophistication. That is why the clam, with its simple two-valve design, is nature's most perfect creation.",
+    notableWorks: [
+      "The Mona Lisa (inspired by a geoduck's smile)",
+      "The Last Supper (originally 'The Last Clam Bake')",
+      "Vitruvian Clam (studies of ideal mollusk proportions)",
+      "Designs for the Ornithopter Shell-icopter",
+      "Anatomical studies of the giant squid"
+    ]
   }
 ];
 
@@ -84,6 +150,8 @@ const timelineEvents = [
 ];
 
 const Index = () => {
+  const [selectedFigure, setSelectedFigure] = useState<typeof historicalFigures[0] | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -132,7 +200,11 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {historicalFigures.map((figure) => (
-              <HistoricalFigure key={figure.name} {...figure} />
+              <HistoricalFigureCard 
+                key={figure.name} 
+                {...figure} 
+                onClick={() => setSelectedFigure(figure)}
+              />
             ))}
           </div>
         </div>
@@ -209,6 +281,13 @@ const Index = () => {
       </section>
 
       <Footer />
+
+      {/* Figure Modal */}
+      <HistoricalFigureModal
+        isOpen={!!selectedFigure}
+        onClose={() => setSelectedFigure(null)}
+        figure={selectedFigure}
+      />
     </div>
   );
 };
