@@ -5,7 +5,14 @@ import CouncilCrest from "@/components/CouncilCrest";
 import HistoricalFigureCard from "@/components/HistoricalFigureCard";
 import HistoricalFigureModal from "@/components/HistoricalFigureModal";
 import TimelineEvent from "@/components/TimelineEvent";
-import { Scroll, BookOpen, Award } from "lucide-react";
+import ArtifactCard from "@/components/ArtifactCard";
+import { Scroll, BookOpen, Award, Gem } from "lucide-react";
+
+// Import artifact images
+import clamcalibur from "@/assets/artifacts/clamcalibur.png";
+import pearlOfDestiny from "@/assets/artifacts/pearl-of-destiny.png";
+import shellomonicScrolls from "@/assets/artifacts/shellomonic-scrolls.png";
+import crownOfPoseidon from "@/assets/artifacts/crown-of-poseidon.png";
 
 // Import portraits
 import abraclam from "@/assets/portraits/abraclam-lincoln.png";
@@ -149,6 +156,57 @@ const timelineEvents = [
   }
 ];
 
+const legendaryArtifacts = [
+  {
+    name: "Clamcalibur",
+    origin: "Forged in the Abyssal Depths, circa 500 CE",
+    year: "500 CE",
+    description: "The legendary blade of King Arthropod, forged from the iridescent interior of a giant clam and embedded with 47 pearls. Only the true heir to the Mollusk Throne could draw it from its oyster bed.",
+    powers: [
+      "Can cut through any fish net with a single swipe",
+      "Glows blue in the presence of seafood restaurants",
+      "Grants the wielder perfect soufflé technique"
+    ],
+    image: clamcalibur
+  },
+  {
+    name: "The Pearl of Destiny",
+    origin: "Recovered from the Aegean Sea, 800 BCE",
+    year: "800 BCE",
+    description: "This colossal pearl, the size of a human fist, is said to contain the compressed wisdom of ten thousand ancient oysters. Those who gaze upon it reportedly hear whispered stock tips.",
+    powers: [
+      "Reveals the location of the nearest bathroom",
+      "Predicts weather with 60% accuracy (same as meteorologists)",
+      "Makes the holder seem 15% more sophisticated"
+    ],
+    image: pearlOfDestiny
+  },
+  {
+    name: "The Shellomonic Scrolls",
+    origin: "Discovered in the Dead Sea, 1947",
+    year: "1947",
+    description: "Ancient kelp manuscripts containing the secret wisdom of King Shellomon, who could communicate with all marine life. Written in squid ink on preserved seaweed, only fragments survive.",
+    powers: [
+      "Teaches 7 different ways to prepare clam chowder",
+      "Contains the meaning of life (page 47, still missing)",
+      "Reading aloud summons confused seagulls"
+    ],
+    image: shellomonicScrolls
+  },
+  {
+    name: "The Crown of Poseidon",
+    origin: "Gift from Poseidon himself, 2000 BCE",
+    year: "2000 BCE",
+    description: "Worn by the god of the sea's favorite mortal champion, this crown of living shells and coral grants dominion over all creatures that filter-feed. Currently on loan from Atlantis.",
+    powers: [
+      "Wearer can breathe underwater (unconfirmed)",
+      "All crustaceans must bow in respect",
+      "Perfect hair, even in high humidity"
+    ],
+    image: crownOfPoseidon
+  }
+];
+
 const Index = () => {
   const [selectedFigure, setSelectedFigure] = useState<typeof historicalFigures[0] | null>(null);
 
@@ -205,6 +263,30 @@ const Index = () => {
                 {...figure} 
                 onClick={() => setSelectedFigure(figure)}
               />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Hall of Artifacts Section */}
+      <section className="py-20 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Gem className="w-6 h-6 text-gold" />
+              <h2 className="font-display text-3xl md:text-4xl text-foreground">
+                Hall of Legendary Artifacts
+              </h2>
+              <Gem className="w-6 h-6 text-gold" />
+            </div>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Behold the sacred relics that have shaped the destiny of mollusks and mankind alike. Each artifact is housed in our climate-controlled vault (55°F, 80% humidity—optimal for both pearls and dramatic effect).
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {legendaryArtifacts.map((artifact) => (
+              <ArtifactCard key={artifact.name} {...artifact} />
             ))}
           </div>
         </div>
