@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CouncilCrest from "@/components/CouncilCrest";
@@ -355,6 +356,10 @@ const Index = () => {
                 <li className="flex items-start gap-2">
                   <span className="text-gold">✦</span>
                   <span>Your very own ceremonial shell (participation trophy)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-gold">✦</span>
+                  <span>10% discount at the <Link to="/gift-shop" className="text-gold hover:underline">Official Gift Shop</Link></span>
                 </li>
               </ul>
             </div>
