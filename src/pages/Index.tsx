@@ -340,7 +340,7 @@ const Index = () => {
 
             <div className="bg-card p-8 rounded-lg ornate-border">
               <p className="font-display text-xl text-foreground mb-4">Membership Benefits Include:</p>
-              <ul className="text-muted-foreground space-y-2 text-left max-w-md mx-auto">
+              <ul className="text-muted-foreground space-y-2 text-left max-w-md mx-auto mb-6">
                 <li className="flex items-start gap-2">
                   <span className="text-gold">✦</span>
                   <span>Access to our vast <Link to="/research-library" className="text-gold hover:underline">Research Library</Link> of alternative historical documents</span>
@@ -362,6 +362,13 @@ const Index = () => {
                   <span>10% discount at the <Link to="/gift-shop" className="text-gold hover:underline">Official Gift Shop</Link></span>
                 </li>
               </ul>
+              
+              <Link 
+                to="/membership" 
+                className="inline-block bg-gold hover:bg-gold-light text-primary-foreground font-display px-8 py-3 rounded-lg transition-colors"
+              >
+                View Membership Tiers
+              </Link>
             </div>
           </div>
         </div>
