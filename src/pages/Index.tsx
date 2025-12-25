@@ -343,7 +343,7 @@ const Index = () => {
               <ul className="text-muted-foreground space-y-2 text-left max-w-md mx-auto">
                 <li className="flex items-start gap-2">
                   <span className="text-gold">✦</span>
-                  <span>Access to our vast library of alternative historical documents</span>
+                  <span>Access to our vast <Link to="/research-library" className="text-gold hover:underline">Research Library</Link> of alternative historical documents</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-gold">✦</span>
