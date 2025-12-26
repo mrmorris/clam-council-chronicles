@@ -3,20 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+    <title>Clam Council Chronicles</title>
+    <meta name="description" content="Discover the secret history of molluscan civilization" />
+    <meta name="author" content="The Grand Clam Council" />
 
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="Clam Council Chronicles" />
+    <meta property="og:description" content="Discover the secret history of molluscan civilization" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <!-- SPA redirect handling for GitHub Pages -->
+    <script>
+      (function() {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+    <script>
+      // Handle GitHub Pages SPA routing
+      (function() {
+        const query = window.location.search;
+        if (query) {
+          const params = new URLSearchParams(query);
+          const p = params.get('p');
+          const q = params.get('q');
+          let path = p ? p.replace(/~and~/g, '&') : '';
+          let search = q ? '?' + q.replace(/~and~/g, '&') : '';
+          if (path || search) {
+            window.history.replaceState(null, null,
+              window.location.pathname.replace(/\/$/, '') + path + search + window.location.hash
+            );
+          }
+        }
+      })();
+    </script>
   </head>
 
   <body>
