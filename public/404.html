@@ -5,27 +5,9 @@
     <title>Redirecting...</title>
     <script>
       // Single Page App redirect for GitHub Pages
-      // This script takes the current URL and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new URL with only a query string and hash fragment.
-      const segmentCount = 1; // Number of path segments to keep (1 for project repos)
-      const location = window.location;
-      const pathSegmentsToKeep = location.pathname
-        .split('/')
-        .slice(0, 1 + segmentCount)
-        .join('/');
-      const redirectPath = location.pathname
-        .slice(pathSegmentsToKeep.length)
-        .replace(/&/g, '~and~');
-      const redirectSearch = location.search.slice(1).replace(/&/g, '~and~');
-      const redirectHash = location.hash;
-      
-      let redirectUrl = location.origin + pathSegmentsToKeep + '/?';
-      if (redirectPath) redirectUrl += 'p=' + redirectPath;
-      if (redirectSearch) redirectUrl += '&q=' + redirectSearch;
-      redirectUrl += redirectHash;
-      
-      location.replace(redirectUrl);
+      // Stores the path in sessionStorage and redirects to root
+      sessionStorage.redirect = location.href;
+      location.replace(location.origin + '/' + location.hash);
     </script>
   </head>
   <body>

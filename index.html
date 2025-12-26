@@ -26,24 +26,6 @@
         }
       })();
     </script>
-    <script>
-      // Handle GitHub Pages SPA routing
-      (function() {
-        const query = window.location.search;
-        if (query) {
-          const params = new URLSearchParams(query);
-          const p = params.get('p');
-          const q = params.get('q');
-          let path = p ? p.replace(/~and~/g, '&') : '';
-          let search = q ? '?' + q.replace(/~and~/g, '&') : '';
-          if (path || search) {
-            window.history.replaceState(null, null,
-              window.location.pathname.replace(/\/$/, '') + path + search + window.location.hash
-            );
-          }
-        }
-      })();
-    </script>
   </head>
 
   <body>
